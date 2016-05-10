@@ -19,7 +19,7 @@ package view.toolTip
 			ToolTipBase._stageLink = $stageLink;
 		}
 	    // на сколько смещать подсказку
-        // относительно координат мыши
+           // относительно координат мыши
 		protected var delta:Point;
 		private var _dictionary:Dictionary;
 		public function ToolTipBase($dx:int=0,$dy:int=0):void 
@@ -30,42 +30,30 @@ package view.toolTip
 			// делаем окно с подсказкой недоступной для мыши
 			this.mouseChildren = this.mouseEnabled = false;
 		}
+		
 		protected var thisCurrentTarget:DisplayObject;
 		protected var currentData:Object;
 		
 		private function overHandler(e:MouseEvent):void 
-		{
+         	{
 			thisCurrentTarget = e.currentTarget as DisplayObject;
 			 // добавляем компонент подсказки на stage
 			_stageLink.addChild(this);
 			trace("this is the"+this);
 			setPosition();
-            //
             // начинаем случать событие MOUSE_MOVE
             thisCurrentTarget.addEventListener(MouseEvent.MOUSE_MOVE, moveHandler);
-            //
             // определяем data из имеющегося словаря
             currentData = _dictionary[thisCurrentTarget];
-            //
-            // метод showHint вызывается что бы потомки тоже могли
-            // в этот момент сделать необходимые действия
             showHint(currentData);
-            //
-            // отправляем событие OPEN
-            // смысл этого события тот же,
-            // что и у метода showHint
-           // this.dispatchEvent(new Event(Event.OPEN));
-		}
-		
+         
+        	}
 		private function moveHandler(e:MouseEvent):void 
-		
-		{
-			      // дергаем updateAfterEvent что бы
-            // движение было более плавным
-            e.updateAfterEvent();
-            // задаем координаты компонента-подсказки
-            setPosition();
-		}
+	        	{
+                           e.updateAfterEvent();
+                          // задаем координаты компонента-подсказки
+                           setPosition();
+	         	}
 	    private function setPosition():void
        
 		{
@@ -73,17 +61,16 @@ package view.toolTip
             // используя смещение delta
             this.x = _stageLink.mouseX + delta.x;
             this.y = _stageLink.mouseY + delta.y;
-        }
+                }
 		
 		private function outHandler(e:MouseEvent):void 
 		{
 			 // убираем компонент-подсказку со stage
-            if (this.parent != null) {
+                if (this.parent != null) {
                 this.parent.removeChild(this);
-            }
-            //
-            // убиваем слушателя события MOUSE_MOVE
-            thisCurrentTarget.removeEventListener(MouseEvent.MOUSE_MOVE, moveHandler)
+                                         }
+         
+                thisCurrentTarget.removeEventListener(MouseEvent.MOUSE_MOVE, moveHandler)
 		}
 		
 		
