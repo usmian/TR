@@ -39,7 +39,7 @@ package superClasses
 		{
 			_timer.stop();
 			_timer.removeEventListener(TimerEvent.TIMER, onTimerHandler );
-	        _timer = null;
+	                _timer = null;
 			//callback function with arguments
 			_callBack(_args);
 	
