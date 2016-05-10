@@ -16,7 +16,7 @@ package
 	public class Facade 
 	{
 	   
-	   public static var gameStage:Stage ;//must be stay first
+	   public static var gameStage:Stage ;//must stay first
 	   public static var gameModel:MainModel;
 	   public static var gameController:MainController;
 	   public static var gameView:MainView;
