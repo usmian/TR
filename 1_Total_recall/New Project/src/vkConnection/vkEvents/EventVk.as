@@ -9,7 +9,7 @@ package vkConnection.vkEvents
 	
 	public class EventVk extends Event 
 	{
-	    public static const ADD_FRIENDS:String = "AddFriends";
+	        public static const ADD_FRIENDS:String = "AddFriends";
 		public static const ADD_PLAYER:String = "AddPlayer";
 		public var params:Object;
 		public function EventVk(type:String,$params:Object = null, bubbles:Boolean=false, cancelable:Boolean=false) 
