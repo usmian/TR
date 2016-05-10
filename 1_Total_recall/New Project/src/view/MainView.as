@@ -66,7 +66,7 @@ package view
 		private var _toolBack:ToolTip;
 		private var _toolLifeTxt:ToolTip;
 		//
-	    private var _lifeFrame:int;
+	        private var _lifeFrame:int;
 		private var _lifeTxt:int;
 		private var _blurPause:BlurFilter;
 		public function MainView() 
@@ -83,7 +83,7 @@ package view
 			   lifeUpdatesInit();
 			//
 			  _lifeBar = new lifebar();
-			   
+			//   
 			  ToolTipBase.init(Facade.gameStage);
 			  toolTipInit();
 			//
@@ -94,16 +94,16 @@ package view
 			  _tempSymbolsCont = new temp();
 			  _loadScreen = new loadScreen();
 			   Facade.gameStage.addChild(_screens);
-		       Facade.gameStage.addChild(_loadScreen);
+		           Facade.gameStage.addChild(_loadScreen);
 			// 
 			//add to existing stage
 			//
 			  _clipsActiveList = new Vector.<MovieClip>;//init _clipsActiveList for items which opened
 			//
-		      _screens.addEventListener(MouseEvent.CLICK, screens_click);//select and click for menu buttons and interactive items
-			  _screens.addEventListener(MouseEvent.MOUSE_OVER, screens_over);
+	       	          _screens.addEventListener(MouseEvent.CLICK, screens_click);//select and click for menu buttons and interactive items
+	         	  _screens.addEventListener(MouseEvent.MOUSE_OVER, screens_over);
 			//
-		      _bot.addEventListener(FPMCEvent.RASTERIZATION_PROGRESS, bot_rasterizationProgress);
+		          _bot.addEventListener(FPMCEvent.RASTERIZATION_PROGRESS, bot_rasterizationProgress);
 			  _bot.addEventListener(FPMCEvent.RASTERIZATION_COMPLETE, bot_rasterizationComplete);
 				
 	    }
