@@ -39,9 +39,7 @@ package view.animatedPanel
 		
 		{
 			//this._index = $index;
-			
 			//_backGround.alpha = 0;
-			
 			_stateContainer = new FPTSprite();
 			 this.addChild(_stateContainer);
 			_stateContainer.x = -800;
@@ -61,16 +59,14 @@ package view.animatedPanel
 			_sensor.buttonMode = true;
 			_sensor.addEventListener(MouseEvent.CLICK, sensor_click);
 			_sensor.addEventListener(MouseEvent.ROLL_OVER, onOverHandler);
-            _sensor.addEventListener(MouseEvent.ROLL_OUT, onOutHandler);
-            _sensor.addEventListener(MouseEvent.MOUSE_DOWN, onDownHandler);
-            _sensor.addEventListener(MouseEvent.MOUSE_UP, onUpHandler);
+                        _sensor.addEventListener(MouseEvent.ROLL_OUT, onOutHandler);
+                        _sensor.addEventListener(MouseEvent.MOUSE_DOWN, onDownHandler);
+                        _sensor.addEventListener(MouseEvent.MOUSE_UP, onUpHandler);
 			
 		
 			
-			this.addEventListener(Event.ADDED_TO_STAGE,animation)
+		 	this.addEventListener(Event.ADDED_TO_STAGE,animation)
 			//mmask();//for mask background
-			
-			
 		}
 
 	    
@@ -147,6 +143,7 @@ package view.animatedPanel
 		
 		private function sensor_click(e:MouseEvent):void 
 		{
+	     	//throw index of button
 			dispatchEvent(new ButtonEvent(EventConst.CLICK_TARGET, e.target));
 			
 		}
@@ -177,9 +174,9 @@ package view.animatedPanel
 			
 			_sensor.removeEventListener(MouseEvent.CLICK, sensor_click);
 			_sensor.removeEventListener(MouseEvent.ROLL_OVER, onOverHandler);
-            _sensor.removeEventListener(MouseEvent.ROLL_OUT, onOutHandler);
-            _sensor.removeEventListener(MouseEvent.MOUSE_DOWN, onDownHandler);
-            _sensor.removeEventListener(MouseEvent.MOUSE_UP, onUpHandler);
+                        _sensor.removeEventListener(MouseEvent.ROLL_OUT, onOutHandler);
+                        _sensor.removeEventListener(MouseEvent.MOUSE_DOWN, onDownHandler);
+                        _sensor.removeEventListener(MouseEvent.MOUSE_UP, onUpHandler);
 			_sensor = null;
 		}
 	}
