@@ -34,12 +34,12 @@ package model //в модели крутится логика
 			_scoreCounter = 0;
 			_movesCounter = 0;
 			_deleteItemsCounter = 0;
-			 
-			_lifeFrame = Settings.FRAMERATE;
-			 _arr_number = new Array();//additional massive
+	 		 
+	 	  	_lifeFrame = Settings.FRAMERATE;
+	         	 _arr_number = new Array();//additional massive
 			
 			_symblolList = new Vector.<uint>;//massive with random numbers
-		    _ItemsOpenlList = new Vector.<String>;//massive with opened color items
+		        _ItemsOpenlList = new Vector.<String>;//massive with opened color items
 			
 			fillSymbolList();//first-random filling _symbolList, then dipatch ready to draw and kick _symbolList to view
 			fillSymbolList();//2 different random massive 
@@ -56,8 +56,8 @@ package model //в модели крутится логика
 			for (var i:uint = 1; i < Settings.ITEMS_L1; i++) 
 			{
 				var random_num:uint= Math.floor(Math.random()*(Settings.ITEMS_L1-i))//рандомное чищло
-			    _symblolList.push(_arr_number[random_num]);//пихаем в 0 индекс окончательного массива рандомное число
-				_arr_number.splice(random_num, 1);//убираем из массива по порядку рандомное число 
+	         		    _symblolList.push(_arr_number[random_num]);//пихаем в 0 индекс окончательного массива рандомное число
+	         			_arr_number.splice(random_num, 1);//убираем из массива по порядку рандомное число 
 			}
 			
 		}
@@ -87,9 +87,8 @@ package model //в модели крутится логика
 			if (_ItemsOpenlList.length==Settings.OPEN_ITEMS_LIMIT) //if lenght bigger than 2
 			{
 						_movesCounter++;
-						
 						GlobalDispatcher.dispatch(new GameEvent(EventConstants.MOVES_COUNTER_UPDATED, _movesCounter));
-				        GlobalDispatcher.dispatch(new GameEvent(EventConstants.RESULT_TURN,checkItems()));//засылаем результат вызова функции вместе с событием
+			         	        GlobalDispatcher.dispatch(new GameEvent(EventConstants.RESULT_TURN,checkItems()));//засылаем результат вызова функции вместе с событием
 						state = Settings.RESULT_STATE;//if click twice then return
 						//checkItems() call in dispatch			
 			}
@@ -105,7 +104,6 @@ package model //в модели крутится логика
 		{
 			var item:String = _ItemsOpenlList[0];//string label of color
 			
-			
 			for (var i:uint = 1; i < _ItemsOpenlList.length; i++) 
 			{
 				
@@ -116,16 +114,12 @@ package model //в модели крутится логика
 					_lifeCounter -= Settings.DAMAGE;
 				   	 GlobalDispatcher.dispatch(new GameEvent(EventConstants.ON_LIFE_UPDATE,lifeUpdate()));
 					 if (_lifeCounter <= 0)
-					   {
-						   
-					delay(2000, overGame);
-						
-					
-					   }
+				    {
+			        	delay(2000, overGame);
+				    }
 				
-					 return false;
+				        	 return false;
 				}
-				
 			}
 			_ItemsOpenlList.length = 0;//anyway clean massive IOL 
 			_deleteItemsCounter++;
@@ -135,7 +129,7 @@ package model //в модели крутится логика
 		private function overGame($for_args:Object=null):void
 		{
 			 trace("GameOver");
-			 GlobalDispatcher.dispatch(new GameEvent(EventConstants.GAME_OVER));//GAME OVER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			 GlobalDispatcher.dispatch(new GameEvent(EventConstants.GAME_OVER));
 		}
 		private function lifeUpdate():Object
 		{
@@ -144,7 +138,7 @@ package model //в модели крутится логика
 			var percent:int;
 			percent = (_lifeCounter / Settings.MAX_LIFE) * 100;
 			_lifeFrame-=Math.floor((percent * Settings.FRAMERATE) / 100);
-	        var obj:Object = {frame:_lifeFrame, txt:_lifeCounter};//sell 2 parameters
+	                var obj:Object = {frame:_lifeFrame, txt:_lifeCounter};//sell 2 parameters
 			return obj;	
 			
 			
