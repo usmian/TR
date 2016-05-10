@@ -66,8 +66,6 @@ package view.animatedPanel
 		
 		private function sensor_click(e:MouseEvent):void 
 		{
-			trace("clixk sensor");
-			
 			callBackAnimation();
 			disposeIt();
 			e.target.mouseEnabled = false;
@@ -89,8 +87,7 @@ package view.animatedPanel
 		
 		private function animationBackX_finish(e:FPTEvent):void 
 		{
-			
-			dispatchEvent(new ButtonEvent(EventConst.CLICK_BUTTON));
+		  	dispatchEvent(new ButtonEvent(EventConst.CLICK_BUTTON));
 			_animationBackX.removeEventListener(FPTEvent.FINISH, animationBackX_finish);
 		}
 		
@@ -98,8 +95,6 @@ package view.animatedPanel
 		
 		private function this_addedToStage(e:Event):void 
 		{
-			
-			
 			_animationBackX = new FPTween( { duration:1.5, property:FPTProperties.SCALEX, ease:FPTEaseTypes.ELASTIC_IN_OUT, target:_backGround, finish:1 } );
 			_animationBackY = new FPTween( { duration:1.5, property:FPTProperties.SCALEY, ease:FPTEaseTypes.ELASTIC_IN_OUT, target:_backGround, finish:1 } );
 			_animationremX = new FPTween( { duration:1.5, property:FPTProperties.SCALEX, ease:FPTEaseTypes.ELASTIC_IN_OUT, target:_removeButton, finish:1 } );
