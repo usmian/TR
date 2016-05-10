@@ -133,7 +133,6 @@ package view
 			trace("KILL");
 			Facade.gameStage.removeChild(_animPanel);
 			Facade.gameStage.addChild(_screens);
-				
 		}
 		
 		public function onReadyRasterization():void
@@ -142,7 +141,7 @@ package view
 		   _bot.gotoAndPlay('idle');
 		   _bot.y = BOT_POSITION_Y;
 		   _bot.x = BOT_POSITION_X;
-           _botCreate = true;
+                   _botCreate = true;
 		}
 		
 		private function bot_rasterizationProgress(e:FPMCEvent):void 
@@ -178,15 +177,14 @@ package view
 			
 			switch (e.target.name) 
 			{
-				case "back_c": 
+	        		case "back_c": 
 				  e.target.buttonMode = true;  
 				  
 				break;
-			    case "instance1":
+		       	       case "instance1":
 				  e.target.buttonMode = false;
 				  
-			    break;
-				
+		         	    break;
 				default:
 			}
 		}
@@ -218,12 +216,12 @@ package view
 		private function forBuildSymbol($index:uint):void 
 		{
 			var symb:MovieClip = new symbol();
-				
+			//	
 			symb.name = "symbol";	
 			symb.gotoAndStop($index);//0- 1 случайное значение 1 индекс 2 случ значения 2 -6...7-3
 			symb.x = _screens.symbolsContainer.getChildAt(0).x;
 			symb.y = _screens.symbolsContainer.getChildAt(0).y;
-			
+			//
 			_screens.symbolsContainer.getChildAt(0).alpha = 0;//turn dummys to tempContainer and add color Items to left space on screen
 			_tempSymbolsCont.addChild(_screens.symbolsContainer.getChildAt(0)); //symbolsContainer - пустой мувиклип внутри _скринс в который добавляются нужные мувики(определяется как var)
 			_screens.symbolsContainer.addChild(symb);//определяем верхний клип в контейнере и в его координаты пишем случайную карту затем удаляем клип и так пока не кончатся
@@ -238,7 +236,6 @@ package view
 				}
 				delay(Settings.DELAY_START, onAllItemsHided);//for 1500 milliseconds
 				_screens.mouseChildren = false;//blocked to click and avoid error with timer
-				
 			}
 		
 		private function onAllItemsHided(for_args:Object=null):void //BaseClass function _callback create empty argument
@@ -303,6 +300,7 @@ package view
 			//for repair null error
 			if (_screens.contains(_lifeBar)) 
 			{
+				//need to spread to different dunction
 				GlobalDispatcher.dispatch(new GameEvent(EventConstants.SWORD_HIT));
 				(_screens.getChildByName("lifeTxtCount")as TextField).text=String(_lifeTxt);	
 			}			
@@ -323,7 +321,6 @@ package view
 		private function twA_finish(e:FPTEvent):void 
 		{
 			_lifeTextCont.alpha = 0;
-		    
 			 GlobalDispatcher.dispatch(new GameEvent(EventConstants.END_TURN));
 		}
 		
@@ -361,36 +358,31 @@ package view
 				_screens.mouseChildren = false;
 				(_screens.getChildByName("textScore") as TextField).text = String(Facade.gameModel.getScoreTxt());
 			}
-			
-			trace("_clips_list_refreshed");
 		}
 	
 		private function screens_click(e:MouseEvent):void 
 		  {
 			
-			switch (e.target.name) 
-			 {
-			case "start_butN":
-			  
+		switch (e.target.name) 
+		   	 {
+			case "start_butN"://start button on 'menu' _screen
+			
 				startGame();
-				
 			break;
 			
-			case "back_btnN":
+			case "back_btnN"://back button on 'game' _screen
 			   
 				backToMenu();
-						
 			break;
-			case "opt_butN":
+			case "opt_butN"://options button on 'menu' _screen
 			
 				options();	
-				
 			break;
-			case "back_c":   
+			case "back_c"://back card  
 				var event:GameEvent = new GameEvent(EventConstants.CLICK_TO_CARD, e.target.parent)
 				GlobalDispatcher.dispatch(event);//диспатчим клик по итему и сохраняем конкретный итем в параметре ивента parent!!потому что таргет бэк а парент цвет	    
 				trace("current Card is "+e.target.parent.currentLabel);
-			   }
+	         	   }
 		  }
 	
 		  private function startGame():void 
@@ -401,21 +393,19 @@ package view
 				  _screens.gotoAndStop("game");
 				  if (_botCreate) 
 				  {
-					   MyApp.getVk();//TODO:REPAIR IT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					   MyApp.getVk();
 					  _screens.addChild(_bot);
-					  
 					  _screens.addChild(_lifeBar);
 					  _lifeBar.gotoAndStop(0);
 					   addTollTips();
-					  
-					  
+					  //
 					  _lifeBar.x = LIFE_BAR_X;
 					  _lifeBar.y = LIFE_BAR_Y;
 					  _bot.gotoAndPlay('idle');
-					  
+					  //
 					  GlobalDispatcher.dispatch(new GameEvent(EventConstants.START_GAME));
 				  }	
-				 createDamageTxt();
+			 createDamageTxt();
 		  }
 		  
 		 
@@ -437,8 +427,9 @@ package view
 			   
 			   _screens.gotoAndStop("menu");
 			   if (_screens.contains(_bot)) 
-			   {       _screens.removeEventListener(Event.ENTER_FRAME, screens_enterFrame);
-					   _screens.removeChild(_bot);  
+			   {           
+			           _screens.removeEventListener(Event.ENTER_FRAME, screens_enterFrame);
+			           _screens.removeChild(_bot);  
 			   }
 			   if (_screens.contains(_lifeBar)) 
 			   {
@@ -451,15 +442,14 @@ package view
 			   }
 			 _toolButtonStart = new ToolTip( -180, 20, 370, 70);
 			 _toolButtonStart.register(_screens.getChildByName("opt_butN") as DisplayObject,'внутри - анимированная панель'+ "\n"+'с кнопками');
-			  
-			   
-		     _tempSymbolsCont.lenght = 0;
-		     _clipsList.length = 0;
+			  //
+		         _tempSymbolsCont.lenght = 0;
+		         _clipsList.length = 0;
 			 Facade.gameStage.removeChild(_lifeTextCont); 
-			 trace(GlobalDispatcher.countOfListeners); 			   
+			 //
 			 GlobalDispatcher.dispatch(new GameEvent(EventConstants.BACK_TO_MENU));   
 		   }
-	       private function addTollTips():void 
+	           private function addTollTips():void 
 		   {
 			  if (_screens.contains(_lifeBar)) 
 			  {
@@ -480,7 +470,7 @@ package view
 					 GlobalDispatcher.dispatch(new GameEvent(EventConstants.START_GAME));
 			}
 	
-			public function nextLevel():void 
+	        	public function nextLevel():void 
 			{
 				backToMenu();
 			}
