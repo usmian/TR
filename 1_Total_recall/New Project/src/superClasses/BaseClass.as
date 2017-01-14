@@ -6,6 +6,7 @@ package superClasses
 	 * ...
 	 * @author ф
 	 */
+	//this is abstraction class
 	public class BaseClass 
 	{
 		private var _timer:Timer;
@@ -13,9 +14,9 @@ package superClasses
 		private var _args:Object;
 		public function BaseClass() 
 		{
-			//call in constructor main function
 			onRegister();
-			//this is abstraction class
+			//call in constructor main function
+			
 		}
 		protected function onRegister():void 
 		{
